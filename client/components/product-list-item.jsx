@@ -1,14 +1,16 @@
 import React from 'react';
+// import Ostrich from '../../server/public/images/ostrich-pillow.jpg';
 
 function ProductListItem() {
   return (
     <div className="container">
       <div className="row">
         <div className="card col-3">
-          <img src="..\..server\public\images\ostrich-pillow.jpg" alt="ostrich pillow"/>
+          <img src="images/ostrich-pillow.jpg" alt="ostrich pillow" className="img-fluid fit-image" />
           <div className="card-body">
-            <h5 className="card-title">Octopus Pillow</h5>
-            <p className="card-text">Five-year strategic plan products need full resourcing and support from a cross-functional team in order to be built, maintained, and evolved. We need to button up our approach hit the ground running, one-sheet, nor forcing function.</p>
+            <h5 className="card-title">Ostrich Pillow</h5>
+            <h6 className="card-text text-secondary">$19.99</h6>
+            <p className="card-text">Five-year strategic plan products need full resourcing and support from a cross-functional team.</p>
           </div>
         </div>
       </div>
