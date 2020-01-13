@@ -1,5 +1,4 @@
 import React from 'react';
-// import Ostrich from '../../server/public/images/ostrich-pillow.jpg';
 
 function ProductListItem() {
   return (
