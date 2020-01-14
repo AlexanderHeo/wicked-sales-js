@@ -54,7 +54,7 @@ app.get('/api/products/:productId', (req, res, next) => {
 
   db.query(sql, params)
     .then(result => {
-      res.status(200).json(result.rows);
+      res.status(200).json(result.rows[0]);
     })
     .catch(error => {
       next(error);
