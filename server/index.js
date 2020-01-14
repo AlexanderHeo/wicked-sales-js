@@ -38,6 +38,30 @@ app.get('/api/products', (req, res, next) => {
     });
 });
 
+app.get('/api/products/:productId', (req, res, next) => {
+
+  const { productId } = req.params;
+  if (!parseInt(productId)) {
+    return res.status(400).json({
+      error: 'The product id must be a positive integer.'
+    });
+  }
+  const sql = `
+    select *
+      from "products"
+      where "productId" = $1;
+    `;
+  const params = [productId];
+
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
