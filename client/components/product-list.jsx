@@ -37,12 +37,13 @@ class ProductList extends React.Component {
           <div className="row">
             {
               products.map(item => {
+                const price = `$${(item.price / 100).toFixed(2)}`;
                 return (
                   <Item
                     key={ item.productId }
                     image={ item.image }
                     name={ item.name }
-                    price={ item.price }
+                    price={ price }
                     shortDescription={ item.shortDescription }
                   />
                 );
@@ -57,17 +58,19 @@ class ProductList extends React.Component {
 }
 
 function Item(props) {
+  const styles = {
+    height: '400px'
+  };
   return (
-    <>
-      <div className="card col-4 ">
-        <img src={ props.image } alt={ props.name } className="img-fluid fit-image" />
-        <div className="card-body">
-          <h5 className="card-title">{ props.name }</h5>
-          <h6 className="card-text text-secondary">{ props.price }</h6>
-          <p className="card-text">{ props.shortDescription }</p>
-        </div>
+    <div className="card col-lg-3 col-sm-5 m-4" style={styles}>
+      <img src={props.image} alt={props.name} className="img-fluid h-50"
+        style={{ objectFit: 'contain' }} />
+      <div className="card-body">
+        <h5 className="card-title">{props.name}</h5>
+        <h6 className="card-text text-secondary">{props.price}</h6>
+        <p className="card-text">{props.shortDescription}</p>
       </div>
-    </>
+    </div>
   );
 }
 
