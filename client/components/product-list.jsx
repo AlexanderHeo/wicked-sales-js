@@ -62,7 +62,7 @@ function Item(props) {
     height: '400px'
   };
   return (
-    <div className="card col-lg-3 col-sm-5 m-4" style={styles}>
+    <div className="card col-lg-3 col-md-5 col-sm-10 m-4" style={styles}>
       <img src={props.image} alt={props.name} className="img-fluid h-50"
         style={{ objectFit: 'contain' }} />
       <div className="card-body">
