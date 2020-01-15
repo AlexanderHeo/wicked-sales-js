@@ -25,15 +25,13 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.view.name);
-    // console.log(this.state.view.params.productId);
     const stateName = this.state.view.name;
     let detail;
 
     if (stateName === 'details') {
-      detail = <ProductDetail productId= { this.state.view.params.productId } />;
+      detail = <ProductDetail productId= { this.state.view.params.productId } onClick={ this.setView } />;
     } else {
-      detail = <ProductList onClick={this.setView} />;
+      detail = <ProductList onClick={ this.setView } />;
     }
 
     return (

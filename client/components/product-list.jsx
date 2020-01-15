@@ -27,9 +27,7 @@ class ProductList extends React.Component {
   render() {
     const products = this.state.products;
     if (products.length === 0) {
-      return (
-        <h4>There are no products available at the moment.</h4>
-      );
+      return null;
     } else {
       return (
         <div className="container">

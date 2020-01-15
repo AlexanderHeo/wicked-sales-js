@@ -29,18 +29,16 @@ class ProductDetails extends React.Component {
     const product = this.state.product;
 
     if (!product) {
-      return (
-        <h2>Waiting to load</h2>
-      );
+      return null;
     } else {
       const price = `$${(product.price / 100).toFixed(2)}`;
       return (
         <div className="container border mt-5">
 
           <div className="row">
-            <p>
-              &lt;Back to Catalog
-            </p>
+            <ReturnToCatalog
+              view={ this.props.onClick }
+            />
           </div>
 
           <div className="container">
@@ -97,6 +95,14 @@ function LongDescription(props) {
     <div className="col-12">
       <p>{ props.longDescription }</p>
     </div>
+  );
+}
+
+function ReturnToCatalog(props) {
+  return (
+    <p onClick={() => props.view('catalog', {})}>
+      &lt;Back to Catalog
+    </p>
   );
 }
 
