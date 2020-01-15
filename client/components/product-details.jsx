@@ -45,10 +45,10 @@ class ProductDetails extends React.Component {
             <div className="row" style={{ height: '400px' }}>
 
               <Item
-                image={product.image}
-                name={product.name}
-                price={price}
-                shortDescription={product.shortDescription}
+                image={ product.image }
+                name={ product.name }
+                price={ price }
+                shortDescription={ product.shortDescription }
               />
 
             </div>
@@ -73,18 +73,17 @@ class ProductDetails extends React.Component {
 function Item(props) {
   return (
     <>
-      <div className="col-lg-4">
+      <div className="d-flex h25">
         <img
           src={ props.image }
           alt={ props.name }
-          className="h-25"
-          style={{ objectFit: 'contain' }}
+          style={{ maxHeight: '400px' }}
         />
-      </div>
-      <div className="col-8">
-        <h3>{ props.name }</h3>
-        <h5 className="text-success">{ props.price }</h5>
-        <p>{ props.shortDescription }</p>
+        <div className="d-flex flex-column">
+          <h3>{ props.name }</h3>
+          <h5 className="text-success">{ props.price }</h5>
+          <p>{ props.shortDescription }</p>
+        </div>
       </div>
     </>
   );
@@ -100,7 +99,10 @@ function LongDescription(props) {
 
 function ReturnToCatalog(props) {
   return (
-    <p onClick={() => props.view('catalog', {})}>
+    <p
+      onClick={() => props.view('catalog', {})}
+      style={{ cursor: 'pointer' }}
+    >
       &lt;Back to Catalog
     </p>
   );
