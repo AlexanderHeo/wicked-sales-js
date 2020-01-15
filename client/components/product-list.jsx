@@ -58,7 +58,8 @@ class ProductList extends React.Component {
 
 function Item(props) {
   const styles = {
-    height: '500px'
+    height: '500px',
+    cursor: 'pointer'
   };
   return (
     <div
