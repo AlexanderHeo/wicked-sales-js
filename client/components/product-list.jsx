@@ -27,9 +27,7 @@ class ProductList extends React.Component {
   render() {
     const products = this.state.products;
     if (products.length === 0) {
-      return (
-        <h4>There are no products available at the moment.</h4>
-      );
+      return null;
     } else {
       return (
         <div className="container">
@@ -44,6 +42,8 @@ class ProductList extends React.Component {
                     name={ item.name }
                     price={ price }
                     shortDescription={ item.shortDescription }
+                    view={ this.props.onClick }
+                    productId={ item.productId }
                   />
                 );
               })
@@ -58,10 +58,14 @@ class ProductList extends React.Component {
 
 function Item(props) {
   const styles = {
-    height: '400px'
+    height: '500px'
   };
   return (
-    <div className="card col-lg-3 col-md-5 col-sm-10 m-4" style={styles}>
+    <div
+      className="card col-lg-3 col-md-5 col-sm-10 m-4"
+      style={styles}
+      onClick={() => props.view('details', { productId: props.productId })}
+    >
       <img src={props.image} alt={props.name} className="img-fluid h-50"
         style={{ objectFit: 'contain' }} />
       <div className="card-body">
