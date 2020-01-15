@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header';
+import ProductDetail from './product-details.jsx';
 import ProductList from './product-list.jsx';
 
 class App extends React.Component {
@@ -20,15 +21,25 @@ class App extends React.Component {
         name: name,
         params: params
       }
-    })
-    );
+    }));
   }
 
   render() {
+    // console.log(this.state.view.name);
+    // console.log(this.state.view.params.productId);
+    const stateName = this.state.view.name;
+    let detail;
+
+    if (stateName === 'details') {
+      detail = <ProductDetail productId= { this.state.view.params.productId } />;
+    } else {
+      detail = <ProductList onClick={this.setView} />;
+    }
+
     return (
       <>
         <Header />
-        <ProductList onClick={ this.setView }/>
+        { detail }
       </>
     );
   }

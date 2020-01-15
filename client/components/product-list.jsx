@@ -46,7 +46,6 @@ class ProductList extends React.Component {
                     shortDescription={ item.shortDescription }
                     view={ this.props.onClick }
                     productId={ item.productId }
-
                   />
                 );
               })
