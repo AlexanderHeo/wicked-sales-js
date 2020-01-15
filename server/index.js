@@ -28,7 +28,6 @@ app.get('/api/products', (req, res, next) => {
           "shortDescription"
       from "products";
   `;
-
   db.query(sql)
     .then(result => {
       res.status(200).json(result.rows);
@@ -40,21 +39,32 @@ app.get('/api/products', (req, res, next) => {
 
 app.get('/api/products/:productId', (req, res, next) => {
   const { productId } = req.params;
-
   if (!parseInt(productId)) {
     next(new ClientError('Product id must be a positive integer.', 400));
   }
-
   const sql = `
     select *
       from "products"
       where "productId" = $1;
     `;
   const params = [productId];
-
   db.query(sql, params)
     .then(result => {
       res.status(200).json(result.rows[0]);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+app.get('/api/cart', (req, res, next) => {
+  const sql = `
+    select *
+      from "carts"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.status(200).json(result.rows);
     })
     .catch(error => {
       next(error);
