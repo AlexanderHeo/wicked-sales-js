@@ -59,7 +59,7 @@ app.get('/api/products/:productId', (req, res, next) => {
 
 app.get('/api/cart', (req, res, next) => {
   if (!req.session.cartId) {
-    return [];
+    res.json([]);
   }
   const sql = `
     select "c"."cartItemId",
@@ -96,7 +96,7 @@ app.post('/api/cart', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
-        next(new ClientError('There is no product with that id.', 400));
+        throw (new ClientError('There is no product with that id.', 400));
       }
       const productPrice = result.rows[0].price;
       const cartId = req.session.cartId;
