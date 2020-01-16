@@ -49,6 +49,8 @@ class ProductDetails extends React.Component {
                 name={ product.name }
                 price={ price }
                 shortDescription={ product.shortDescription }
+                addtocart={ this.props.onSubmit }
+                id={ product.productId }
               />
 
             </div>
@@ -83,6 +85,12 @@ function Item(props) {
           <h3>{ props.name }</h3>
           <h5 className="text-success">{ props.price }</h5>
           <p>{ props.shortDescription }</p>
+          <div>
+            <button
+              className="btn btn-primary"
+              onClick ={ () => props.addtocart({ productId: props.id }) }>Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     </>
