@@ -14,6 +14,7 @@ class App extends React.Component {
       cart: []
     };
     this.setView = this.setView.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   setView(name, params) {
@@ -25,19 +26,60 @@ class App extends React.Component {
     }));
   }
 
+  componentDidMount() {
+    this.getCartItems();
+  }
+
+  getCartItems() {
+    fetch('api/cart')
+      .then(response => {
+        return response.json();
+      })
+      .then(jsonData => {
+        this.setState({
+          cart: jsonData
+        });
+      });
+  }
+
+  addToCart(product) {
+    fetch('/api/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(jsonData => {
+        const cartCopy = [...this.state.cart];
+        cartCopy.push(jsonData);
+        this.setState({
+          cart: cartCopy
+        });
+      });
+  }
+
   render() {
     const stateName = this.state.view.name;
+    const cartItemCount = this.state.cart.length;
     let detail;
 
     if (stateName === 'details') {
-      detail = <ProductDetail productId= { this.state.view.params.productId } onClick={ this.setView } />;
+      detail = <ProductDetail
+        productId= { this.state.view.params.productId }
+        onClick={ this.setView }
+        onSubmit={ this.addToCart }
+      />;
     } else {
       detail = <ProductList onClick={ this.setView } />;
     }
 
     return (
       <>
-        <Header />
+        <Header cartItemCount={ cartItemCount }/>
         { detail }
       </>
     );
