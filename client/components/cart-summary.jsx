@@ -2,15 +2,10 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 
 class CartSummary extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     return (
       <div className="container">
         <div className="row">
-
           <div className="d-flex flex-column">
             <ReturnToCatalog
               view={ this.props.onClick }
@@ -18,9 +13,7 @@ class CartSummary extends React.Component {
             <div>
               <h2 className="m-3">My Cart</h2>
             </div>
-
           </div>
-
           {
             this.props.cart.map(item => {
               const price = `$${(item.price / 100).toFixed(2)}`;

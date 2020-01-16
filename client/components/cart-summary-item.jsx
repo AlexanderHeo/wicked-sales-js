@@ -6,7 +6,12 @@ function CartSummaryItem(item) {
       <div className="container">
         <div className="row w75" style={{ height: '250px' }}>
           <div className="d-flex">
-            <img className="w25 mr-3" src={ item.image } alt={ item.name } style={{ maxHeight: '250px', width: '400px', objectFit: 'contain' }}></img>
+            <img
+              className="w25 mr-3"
+              src={ item.image }
+              alt={ item.name }
+              style={{ maxHeight: '250px', width: '400px', objectFit: 'contain' }}
+            />
             <div className="w75 d-flex flex-column">
               <h3>{ item.name }</h3>
               <h5>{ item.price }</h5>
