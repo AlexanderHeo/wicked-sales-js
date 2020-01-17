@@ -27,23 +27,19 @@ class ProductDetails extends React.Component {
 
   render() {
     const product = this.state.product;
-
     if (!product) {
       return null;
     } else {
       const price = `$${(product.price / 100).toFixed(2)}`;
       return (
         <div className="container border mt-5">
-
           <div className="row">
             <ReturnToCatalog
               view={ this.props.onClick }
             />
           </div>
-
           <div className="container">
             <div className="row" style={{ height: '400px' }}>
-
               <Item
                 image={ product.image }
                 name={ product.name }
@@ -52,10 +48,8 @@ class ProductDetails extends React.Component {
                 addtocart={ this.props.onSubmit }
                 id={ product.productId }
               />
-
             </div>
           </div>
-
           <div className="container">
             <div className="row">
               <LongDescription
@@ -63,13 +57,10 @@ class ProductDetails extends React.Component {
               />
             </div>
           </div>
-
         </div>
       );
     }
-
   }
-
 }
 
 function Item(props) {

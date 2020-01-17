@@ -9,7 +9,13 @@ function Header(props) {
             <h1>
               <span className="ml-4"><i className="fas fa-dollar-sign"></i>Wicked Sales<i className="fas fa-dollar-sign"></i></span>
             </h1>
-            <p>{ props.cartItemCount } Items <i className="fas fa-shopping-cart mr-5 mt-3"></i></p>
+            <p>{ props.cartItemCount } Items
+              <i
+                className="fas fa-shopping-cart mr-5 mt-3"
+                onClick={() => props.onClick('cart', {})}
+                style = {{ cursor: 'pointer' }}
+              />
+            </p>
           </div>
         </div>
       </div>

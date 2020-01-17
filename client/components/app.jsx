@@ -1,4 +1,5 @@
 import React from 'react';
+import CartSummary from './cart-summary.jsx';
 import Header from './header';
 import ProductDetail from './product-details.jsx';
 import ProductList from './product-list.jsx';
@@ -65,22 +66,32 @@ class App extends React.Component {
   render() {
     const stateName = this.state.view.name;
     const cartItemCount = this.state.cart.length;
-    let detail;
+    let component;
 
     if (stateName === 'details') {
-      detail = <ProductDetail
+      component = <ProductDetail
         productId= { this.state.view.params.productId }
         onClick={ this.setView }
         onSubmit={ this.addToCart }
       />;
+    } else if (stateName === 'cart') {
+      component = <CartSummary
+        cart={this.state.cart}
+        onClick={this.setView}
+      />;
     } else {
-      detail = <ProductList onClick={ this.setView } />;
+      component = <ProductList
+        onClick={ this.setView }
+      />;
     }
 
     return (
       <>
-        <Header cartItemCount={ cartItemCount }/>
-        { detail }
+        <Header
+          cartItemCount={ cartItemCount }
+          onClick={ this.setView }
+        />
+        { component }
       </>
     );
   }
