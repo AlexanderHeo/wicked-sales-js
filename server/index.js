@@ -163,8 +163,10 @@ app.post('/api/orders', (req, res, next) => {
 
   if (!cartId) {
     next(new ClientError('Please create a new account.', 400));
+    return;
   } else if (!name || !creditCard || !shippingAddress) {
     next(new ClientError('Please fill out the form completely.', 400));
+    return;
   }
 
   const sql = `
